@@ -6,18 +6,18 @@
  * Time: 22:35
  */
 
-if (!function_exists('clean')) {
+if (!function_exists('cleanInput')) {
 	/**
 	 * 防止注入，清除转义输入
 	 */
-	function clean($value)
+	function cleanInput($value)
 	{
 		if (is_array($value)) {
 			foreach ($value as $key => $v) {
-				$value[$key] = clean($value);
+				$value[$key] = cleanInput($value);
 			}
 		} else {
-			$value = htmlspecialchars(trim(strip_tags($value)));
+			$value = htmlspecialchars(strip_tags($value));
 		}
 		return $value;
 	}

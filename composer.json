@@ -19,5 +19,11 @@
 	},
 	"require-dev": {
 		"mikey179/vfsStream": "1.1.*"
+	},
+	"repositories": {
+		"packagist": {
+			"type": "composer",
+			"url": "https://packagist.phpcomposer.com"
+		}
 	}
 }
