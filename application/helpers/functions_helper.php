@@ -7,9 +7,11 @@
  */
 
 if (!function_exists('cleanInput')) {
-	/**
-	 * 防止注入，清除转义输入
-	 */
+    /**
+     * 防止注入，清除转义输入
+     * @param $value
+     * @return array|string
+     */
 	function cleanInput($value)
 	{
 		if (is_array($value)) {
@@ -23,13 +25,13 @@ if (!function_exists('cleanInput')) {
 	}
 }
 
-if (!function_exists('generate_salt')) {
+if (!function_exists('generateSalt')) {
 	/**
 	 * 生成盐值
 	 * @param int $length
 	 * @return string
 	 */
-	function generate_salt($length = 4)
+	function generateSalt($length = 4)
 	{
 		$salt = '';
 		for ($i = 0; $i < $length; $i++) $salt .= chr(rand(97, 122));
@@ -37,12 +39,13 @@ if (!function_exists('generate_salt')) {
 	}
 }
 
-if (!function_exists('date_now')) {
-	/**
-	 * 获取当前时间
-	 * @return bool|string
-	 */
-	function date_now($unixTime = '')
+if (!function_exists('dateNow')) {
+    /**
+     * 获取当前时间
+     * @param string $unixTime
+     * @return bool|string
+     */
+	function dateNow($unixTime = '')
 	{
 		if (empty($unixTime)) {
 			return date('Y-m-d H:i:s');
@@ -52,34 +55,34 @@ if (!function_exists('date_now')) {
 	}
 }
 
-if (!function_exists('compile_pass')) {
+if (!function_exists('compilePass')) {
 	/**
 	 * 获得加密后的密码
 	 * @param $password
 	 * @param $salt
 	 * @return string
 	 */
-	function compile_pass($password, $salt = '')
+	function compilePass($password, $salt = '')
 	{
 		return md5($password . $salt);
 	}
 }
 
 
-if (!function_exists('get_page_nav')) {
+if (!function_exists('getPageNav')) {
 	/**
 	 * 取得分页代码
 	 * @param array
 	 * @return string
 	 */
-	function get_page_nav($config)
+	function getPageNav($config)
 	{
 		$CI =& get_instance();
 		$CI->load->library('pagination');
 
 		// 如果没有传递base url参数过来
 		if (!isset($config['base_url'])) {
-			$uri = get_current_uri();
+			$uri = getCurrentUri();
 			$config['base_url'] = site_url($uri);
 		}
 
@@ -89,12 +92,12 @@ if (!function_exists('get_page_nav')) {
 	}
 }
 
-if (!function_exists('get_current_uri')) {
+if (!function_exists('getCurrentUri')) {
 	/**
 	 * 取得当前uri
 	 * @return string
 	 */
-	function get_current_uri()
+	function getCurrentUri()
 	{
 		$CI =& get_instance();
 
@@ -108,13 +111,13 @@ if (!function_exists('get_current_uri')) {
 	}
 }
 
-if (!function_exists('generate_code')) {
+if (!function_exists('generateCode')) {
 	/**
 	 * 获取随机验证码
 	 * @param int $length
 	 * @return int 验证码
 	 */
-	function generate_code($length = 6)
+	function generateCode($length = 6)
 	{
 		$code = '';
 		for ($i = 0; $i < $length; $i++) {

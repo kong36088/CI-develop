@@ -6,7 +6,7 @@
  * Date: 2016/9/21
  * Time: 14:52
  */
-class Jsonout
+class JsonOut
 {
     const success_code = 1;
     const fail_code = -1;

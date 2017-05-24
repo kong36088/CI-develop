@@ -25,7 +25,7 @@ class Demo extends CI_Controller{
          * 系统封装的固定的json数据格式输出
          * ci框架原因所以library加载要用小写
          */
-        $this->load->library('jsonout'); //加载JsonOut类库，定义在application/libraries/Jsonout.php
+        $this->load->library('jsonout'); //加载JsonOut类库，定义在application/libraries/JsonOut.php
         $this->jsonout->success('这里填写消息或者数据数组');
         $this->jsonout->fail('这里填写消息或者数据数组');
         $this->jsonout->output('这里填写消息或者数据数组');
