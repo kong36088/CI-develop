@@ -8,21 +8,23 @@
  */
 class JsonOut
 {
-    const success_code = 1;
-    const fail_code = -1;
-    /** 输出数据代码 */
-    const output_code = 2;
-    const success_status = 'ok';
-    const fail_status = 'fail';
+    const SUCCESS_CODE = 1;
+    const FAIL_CODE = -1;
+    /** 输出代码 */
+    const OUTPUT_CODE = 2;
+    const DATA_CODE = 3;
+    const SUCCESS_STATUS = 'ok';
+    const FAIL_STATUS = 'fail';
 
     /**
      * 成功
      * @param string $message
+     * @param array $data
      * @param int $code
      * @param string $status
      * @param array $header
      */
-    public function success($message = '', $code = self::success_code, $status = self::success_status, $header = array())
+    public function success($message = '', $data = array(), $code = self::SUCCESS_CODE, $status = self::SUCCESS_STATUS, $header = array())
     {
         header('Content-Type: application/json');
         if (is_array($header)) {
@@ -30,17 +32,18 @@ class JsonOut
                 header($h);
             }
         }
-        echo json_encode(array('code' => $code, 'message' => $message, 'status' => $status));
+        echo json_encode(array('code' => $code, 'message' => $message, 'data' => $data, 'status' => $status));
     }
 
     /**
      * 失败
      * @param string $message
+     * @param array $data
      * @param int $code
      * @param string $status
      * @param array $header
      */
-    public function fail($message = '', $code = self::fail_code, $status = self::fail_status, $header = array())
+    public function fail($message = '', $data = array(), $code = self::FAIL_CODE, $status = self::FAIL_STATUS, $header = array())
     {
         header('Content-Type: application/json');
         if (is_array($header)) {
@@ -48,16 +51,17 @@ class JsonOut
                 header($h);
             }
         }
-        echo json_encode(array('code' => $code, 'message' => $message, 'status' => $status));
+        echo json_encode(array('code' => $code, 'message' => $message, 'data' => $data, 'status' => $status));
     }
 
     /**
      * 输出信息
      * @param string $message
+     * @param array $data
      * @param int $code
      * @param array $header
      */
-    public function output($message = '', $code = self::output_code, $header = array())
+    public function output($message = '', $data = array(), $code = self::OUTPUT_CODE, $header = array())
     {
         header('Content-Type: application/json');
         if (is_array($header)) {
@@ -65,7 +69,7 @@ class JsonOut
                 header($h);
             }
         }
-        echo json_encode(array('code' => $code, 'message' => $message));
+        echo json_encode(array('code' => $code, 'message' => $message, 'data' => $data, 'status' => 'data'));
     }
 
     /**
@@ -74,7 +78,7 @@ class JsonOut
      * @param int $code
      * @param array $header
      */
-    public function data($data = array(), $code = self::success_code, $header = array())
+    public function data($data = array(), $code = self::DATA_CODE, $header = array())
     {
         header('Content-Type: application/json');
         if (is_array($header)) {
@@ -82,6 +86,6 @@ class JsonOut
                 header($h);
             }
         }
-        echo json_encode(array('code' => $code, 'message' => '', 'data' => $data));
+        echo json_encode(array('code' => $code, 'data' => $data));
     }
 }
