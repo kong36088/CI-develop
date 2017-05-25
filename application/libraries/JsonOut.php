@@ -15,6 +15,7 @@ class JsonOut
     const DATA_CODE = 3;
     const SUCCESS_STATUS = 'ok';
     const FAIL_STATUS = 'fail';
+    const DATA_STATUS = 'data';
 
     /**
      * 成功
@@ -69,7 +70,7 @@ class JsonOut
                 header($h);
             }
         }
-        echo json_encode(array('code' => $code, 'message' => $message, 'data' => $data, 'status' => 'data'));
+        echo json_encode(array('code' => $code, 'message' => $message, 'data' => $data, 'status' => self::DATA_STATUS));
     }
 
     /**
@@ -86,6 +87,6 @@ class JsonOut
                 header($h);
             }
         }
-        echo json_encode(array('code' => $code, 'data' => $data));
+        echo json_encode(array('code' => $code, 'message' => '', 'data' => $data,'status'=>self::SUCCESS_STATUS));
     }
 }
